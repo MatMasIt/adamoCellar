@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" />
+    <title>Cantina </title>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills float-right">
+                    <li class="nav-item">
+
+                    </li>
+                    <li class="nav-item">
+
+                    </li>
+                    <li class="nav-item">
+
+                    </li>
+                </ul>
+            </nav>
+            <h3 style="text-align: center;font-size: 50px;">Cantina Adamo<br></h3>
+            <br />
+            <div class="loggedInMenu">
+                <button type="button" class="btn btn-warning logout">Esci</button>
+                <button type="button" class="btn btn-success search">Ricerca</button>
+                <button type="button" class="btn btn-danger chpassBtn">Cambia password</button>
+                <form id="find">
+                    <fieldset>
+
+                        <!-- Form Name -->
+                        <legend>Ricerca</legend>
+                        <hr />
+
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Vino</span>
+                            </div>
+                            <input type="text" name="Svino" class="form-control" placeholder="" aria-label=""
+                                aria-describedby="">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Cantina</span>
+                            </div>
+                            <input type="text" name="Scantina" class="form-control" placeholder="" aria-label=""
+                                aria-describedby="">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Annata</span>
+                            </div>
+                            <input type="number" name="Sannata" class="form-control" placeholder="" aria-label=""
+                                aria-describedby="">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Volume</span>
+                            </div>
+                            <input type="number" name="Svolume" class="form-control" placeholder="" aria-label=""
+                                aria-describedby="">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">L</span>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Quantità</span>
+                            </div>
+                            <input type="number" min="0" step="1" name="Squantita" class="form-control" placeholder=""
+                                aria-label="" aria-describedby="">
+                        </div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Note</span>
+                            </div>
+                            <textarea class="form-control" name="Snote" aria-label="With textarea"></textarea>
+                        </div>
+                        <br />
+                        <button type="button" class="btn btn-danger resetR" style="float:left">Fine ricerca</button>
+                        <button type="submit" class="btn btn-primary searchDo" style="float:right">Cerca</button>
+                    </fieldset>
+                </form>
+                <hr />
+                Ordina per
+                <select class="form-select" name="orderBy" aria-label="Default select example">
+                    <option selected value="id">#</option>
+                    <option value="vino">Vino</option>
+                    <option value="cantina">Cantina</option>
+                    <option value="annata">Annata</option>
+                    <option value="volume">Volume</option>
+                    <option value="quantita">Quantità</option>
+                    <option value="note">Note</option>
+                </select>
+                <select class="form-select" name="orderHow" aria-label="Default select example">
+                    <option selected value="ASC">Crescente</option>
+                    <option value="DESC">Decrescente</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    </div> <!-- /container -->
+
+
+    <center>
+        <div class="container">
+            <div class="m-5">
+                <div id="tableview">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Vino</th>
+                                <th scope="col">Cantina</th>
+                                <th scope="col">Annata</th>
+                                <th scope="col">Volume</th>
+                                <th scope="col">Quantità</th>
+                                <th scope="col">Note</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabbody">
+                        </tbody>
+                    </table>
+                    <p id="pageIndicator">Pagina a di b</p>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination" id="tabnav">
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        </ul>
+                    </nav>
+                    <button type="button" class="btn btn-primary addP" style="float:right">Aggiungi</button>
+                </div>
+                <form class="form-horizontal" id="saveedit">
+                    <fieldset>
+
+                        <!-- Form Name -->
+                        <legend>Aggiungi Bottiglia</legend>
+                        <hr />
+
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Vino</span>
+                            </div>
+                            <input type="text" name="vino" class="form-control" placeholder="" aria-label=""
+                                aria-describedby="">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Cantina</span>
+                            </div>
+                            <input type="text" name="cantina" class="form-control" placeholder="" aria-label=""
+                                aria-describedby="">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Annata</span>
+                            </div>
+                            <input type="number" name="annata" class="form-control" placeholder="" aria-label=""
+                                aria-describedby="">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Volume</span>
+                            </div>
+                            <input type="number" name="volume" class="form-control" placeholder="" aria-label=""
+                                aria-describedby="">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">L</span>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Quantità</span>
+                            </div>
+                            <input type="number" min="0" step="1" name="quantita" class="form-control" placeholder=""
+                                aria-label="" aria-describedby="">
+                        </div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Note</span>
+                            </div>
+                            <textarea class="form-control" name="note" aria-label="With textarea"></textarea>
+                        </div>
+                        <br />
+                        <button type="button" class="btn btn-danger closeForm" style="float:left">Indietro</button>
+                        <button type="submit" class="btn btn-primary" style="float:right">Salva</button>
+                    </fieldset>
+                </form>
+                <div id="view">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td><b>#</b></td>
+                                <td id="Vid"></td>
+                            </tr>
+                            <tr>
+                                <td><b>Vino</b></td>
+                                <td id="Vvino"></td>
+                            </tr>
+                            <tr>
+                                <td><b>Cantina</b></td>
+                                <td id="Vcantina"></td>
+                            </tr>
+                            <tr>
+                                <td><b>Annata</b></td>
+                                <td id="Vannata"></td>
+                            </tr>
+                            <tr>
+                                <td><b>Volume</b></td>
+                                <td id="Vvolume"></td>
+                            </tr>
+                            <tr>
+                                <td><b>Quantità</b></td>
+                                <td id="Vquantita"></td>
+                            </tr>
+                            <tr>
+                                <td><b>Note</b></td>
+                                <td id="Vnote"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-warning closeForm" style="float:left">Chiudi</button>
+                    <a href="#" data-action="delete" id="Vdelete" class="btn btn-danger" style="float:right">
+                        <img class="actionIcon" src="img/bin.png">
+                    </a>
+                </div>
+
+                <form id="passwAccess">
+                    <fieldset>
+
+                        <!-- Form Name -->
+                        <legend>Accesso</legend>
+                        <hr />
+
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Password</span>
+                            </div>
+                            <input type="password" name="password" class="form-control" placeholder="" aria-label=""
+                                aria-describedby="">
+                        </div>
+                        <br />
+                        <button type="submit" class="btn btn-success" style="float:right">Accedi</button>
+                    </fieldset>
+                </form>
+
+
+                <form id="chpass">
+                    <fieldset>
+
+                        <!-- Form Name -->
+                        <legend>Nuova password</legend>
+                        <hr />
+
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Password</span>
+                            </div>
+                            <input type="password" name="Upassword" class="form-control" placeholder="" aria-label=""
+                                aria-describedby="">
+                        </div>
+                        <br />
+                        <button type="submit" class="btn btn-success" style="float:right">Salva</button>
+                        <button type="button" class="btn btn-danger closeForm" style="float:left">Indietro</button>
+                    </fieldset>
+                </form>
+            </div>
+
+        </div>
+
+        <p> © 2021 Mattia Mascarello, Giorgio Adamo</p><br>
+    </center>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script
+        src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.3.7/dist/latest/bootstrap-autocomplete.min.js"></script>
+    <script src="main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+body {
+    background: url("img/CantinaBotti.jpg");
+    min-height: 500px;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+table, tr, td, th {
+    color: white;
+    background-color: black;
+    opacity: 0.88;
+}
+
+.actionIcon {
+    filter: invert(1);
+    width: 20px;
+}
+
+.actionsCell {
+    text-align: center;
+}
+
+* {
+    scrollbar-width: none;
+}
+
+#view {
+    display: none;
+}
+
+#tableview {
+    display: none;
+}
+
+.loggedInMenu {
+    display: none;
+}
+
+#chpass {
+    display: none;
+}
+
+#find {
+    display: none;
+}
